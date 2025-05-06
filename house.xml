@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsm:HouseWaybill xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:rsm="iata:housewaybill:1"
+ xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2"
+ xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:8"
+ xmlns:ram="iata:datamodel:3"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="iata:housewaybill:1 HouseWaybill_1.xsd">
+<rsm:MessageHeaderDocument>                               <!--SEGMENTO OBLIGATORIO--> 
+	<ram:ID>%ID_HOUSE%</ram:ID>                                                      <!--OBLIGATORIO-->  <!--Identificador de la transacción, consecutivo -->
+	<ram:Name>House Waybill</ram:Name>                                        <!--OBLIGATORIO-->
+	<ram:TypeCode>703</ram:TypeCode>                         				  <!--OBLIGATORIO-->
+	<ram:IssueDateTime>2024-06-25T11:55:00.101-05:00</ram:IssueDateTime>      <!--OBLIGATORIO-->
+	<ram:PurposeCode>Creation</ram:PurposeCode>                               <!--OBLIGATORIO-->
+	<ram:VersionID>3.00</ram:VersionID>                     			      <!--OBLIGATORIO-->
+	<ram:ConversationID>123456</ram:ConversationID>         			      <!--OPCIONAL--> 
+	<ram:SenderParty>                                     <!--SEGMENTO OBLIGATORIO--> 
+		<ram:PrimaryID schemeID="C">3L6U</ram:PrimaryID>   				      <!--OBLIGATORIO-->               <!--CAAT VALIDO Y VIGENTE-->
+	</ram:SenderParty>
+	<ram:RecipientParty>                                  <!--SEGMENTO OBLIGATORIO--> 
+		<ram:PrimaryID schemeID="C">VU</ram:PrimaryID>        				  <!--OBLIGATORIO-->
+	</ram:RecipientParty>
+</rsm:MessageHeaderDocument>
+<rsm:BusinessHeaderDocument>                              <!--SEGMENTO OBLIGATORIO--> 
+	<ram:ID>%NAME_HOUSE%</ram:ID>            							     <!--OBLIGATORIO-->  <!--Nombre del HOUSE, debe ser UNICO, de preferencia consecutivo - alfanumerico-->
+	<ram:IncludedHeaderNote>               									 <!--SEGMENTO OPCIONAL-->     
+      <ram:ContentCode>A</ram:ContentCode>      							 <!--OPCIONAL--> 
+      <ram:Content>PROBANDO 123, HASTA 256 CARACTERES</ram:Content>			 <!--OPCIONAL--> 
+    </ram:IncludedHeaderNote>  
+	<ram:SignatoryConsignorAuthentication> 				  <!--SEGMENTO OBLIGATORIO--> 
+		<ram:Signatory>DHL EXPRESS</ram:Signatory>							 <!--OBLIGATORIO-->
+	</ram:SignatoryConsignorAuthentication>
+	<ram:SignatoryCarrierAuthentication>    			  <!--SEGMENTO OBLIGATORIO--> 
+		<ram:ActualDateTime>2024-06-25T11:55:00.101-05:00</ram:ActualDateTime><!--OBLIGATORIO-->
+		<ram:Signatory>DHL EXPRESS</ram:Signatory>						     <!--OBLIGATORIO-->
+		<ram:IssueAuthenticationLocation>   							     <!--SEGMENTO OPCIONAL--> 
+             <ram:Name>CVG</ram:Name>             							 <!--OBLIGATORIO-->               <!--CLAVE IATA, CATALOGO -->
+        </ram:IssueAuthenticationLocation>
+	</ram:SignatoryCarrierAuthentication>
+</rsm:BusinessHeaderDocument>
+<rsm:MasterConsignment>                     			  <!--SEGMENTO OBLIGATORIO--> 
+	<ram:IncludedTareGrossWeightMeasure unitCode="KGM">23</ram:IncludedTareGrossWeightMeasure> <!--OPCIONAL--> 
+    <ram:TotalPieceQuantity>23</ram:TotalPieceQuantity>						 <!--OPCIONAL--> 
+	<ram:TransportContractDocument>                    						 <!--OBLIGATORIO--> 
+	     <ram:ID>%NAME_HOUSE_MASTER%</ram:ID>                    				     <!--OBLIGATORIO-->  <!--Nombre del MASTER, debe ser unico -->
+	</ram:TransportContractDocument>
+	<ram:OriginLocation>                               						 <!--OPCIONAL--> 
+		<ram:ID>EZE</ram:ID>                             				     <!--OBLIGATORIO-->       <!--CLAVE IATA, CATALOGO -->
+		<ram:Name>BUENOS AIRES</ram:Name>        							 <!--OPCIONAL-->
+	</ram:OriginLocation>
+	<ram:FinalDestinationLocation>                   					     <!--OPCIONAL--> 
+		<ram:ID>CUN</ram:ID>                               					 <!--OBLIGATORIO-->       <!--CLAVE IATA, CATALOGO -->
+		<ram:Name>CANCUN</ram:Name>       									 <!--OPCIONAL--> 
+	</ram:FinalDestinationLocation>
+	<ram:IncludedHouseConsignment>         				   <!--SEGMENTO OBLIGATORIO--> 
+	    <ram:ID>ABCD22222</ram:ID>                                                                     <!--OPCIONAL--> 
+	    <ram:AdditionalID>COMPANY</ram:AdditionalID>                                                   <!--OPCIONAL--> 
+        <ram:AssociatedReferenceID>123456</ram:AssociatedReferenceID>                                  <!--OPCIONAL--> 
+        <ram:NilCarriageValueIndicator>true</ram:NilCarriageValueIndicator>                            <!--OPCIONAL-->   <!--TRUE O FALSE -->
+        <ram:DeclaredValueForCarriageAmount currencyID="USD">23</ram:DeclaredValueForCarriageAmount>   <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:NilCustomsValueIndicator>true</ram:NilCustomsValueIndicator>                              <!--OPCIONAL-->   <!--TRUE O FALSE -->
+        <ram:DeclaredValueForCustomsAmount currencyID="USD">23</ram:DeclaredValueForCustomsAmount>     <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:NilInsuranceValueIndicator>true</ram:NilInsuranceValueIndicator>                          <!--OPCIONAL-->   <!--TRUE O FALSE -->
+        <ram:InsuranceValueAmount currencyID="USD">23</ram:InsuranceValueAmount>                       <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:TotalChargePrepaidIndicator>true</ram:TotalChargePrepaidIndicator>                        <!--OPCIONAL-->   
+        <ram:WeightTotalChargeAmount currencyID="USD">23</ram:WeightTotalChargeAmount>                 <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:ValuationTotalChargeAmount currencyID="USD">23</ram:ValuationTotalChargeAmount>           <!--OPCIONAL--> 
+        <ram:TaxTotalChargeAmount currencyID="USD">23</ram:TaxTotalChargeAmount>                       <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:TotalDisbursementPrepaidIndicator>true</ram:TotalDisbursementPrepaidIndicator>            <!--OPCIONAL--> 
+        <ram:AgentTotalDisbursementAmount currencyID="USD">23</ram:AgentTotalDisbursementAmount>       <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:CarrierTotalDisbursementAmount currencyID="USD">23</ram:CarrierTotalDisbursementAmount>   <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:TotalPrepaidChargeAmount currencyID="USD">23</ram:TotalPrepaidChargeAmount>               <!--OPCIONAL-->   <!--CODIGO DE MONEDA-->
+        <ram:TotalCollectChargeAmount currencyID="USD">23</ram:TotalCollectChargeAmount>               <!--OPCIONAL--> 	 <!--CODIGO DE MONEDA-->
+		<ram:IncludedTareGrossWeightMeasure unitCode="KGM">400.00</ram:IncludedTareGrossWeightMeasure> <!--OBLIGATORIO--><!--CODIGO UNIDAD DE MEDIDA-->	
+		<ram:GrossVolumeMeasure unitCode="MTQ">23</ram:GrossVolumeMeasure>		                       <!--OPCIONAL-->   <!--CODIGO DE UNADAD DE VOLUMEN-->
+		<ram:ConsignmentItemQuantity>1</ram:ConsignmentItemQuantity>		                           <!--OPCIONAL-->
+		<ram:PackageQuantity>23</ram:PackageQuantity>	                                     		   <!--OPCIONAL-->	
+		<ram:TotalPieceQuantity>670</ram:TotalPieceQuantity>                                           <!--OBLIGATORIO--> 
+		<ram:SummaryDescription>SON 670 PIEZAS</ram:SummaryDescription>                                <!--OBLIGATORIO--> 
+		<ram:FreightRateTypeCode>F</ram:FreightRateTypeCode>		                                   <!--OPCIONAL-->
+		<ram:ConsignorParty>        <!--PERSONA-->          <!--SEGMENTO OBLIGATORIO--> 
+			<ram:PrimaryID schemeAgencyID="1">MAMA831107EF2</ram:PrimaryID>         		           <!--OPCIONAL-->
+			<ram:AdditionalID>EAN</ram:AdditionalID>                                		           <!--OPCIONAL-->  
+			<ram:Name>GUANGZHOU SAILU INFOTECH CO LTD</ram:Name>                     		           <!--OBLIGATORIO--> 
+			<ram:AccountID>46578498</ram:AccountID>                                  		           <!--OPCIONAL-->
+			<ram:PostalStructuredAddress>                                                <!--SEGMENTO OBLIGATORIO--> 
+				<ram:PostcodeCode>94345</ram:PostcodeCode>                                 			   <!--OPCIONAL-->            
+				<ram:StreetName>NAN HANG HUO YUN DA LOU YUAN NEI CA</ram:StreetName>     			   <!--OBLIGATORIO--> 
+				<ram:CityName>GUANGZHOU CN</ram:CityName>                                			   <!--OBLIGATORIO--> 
+				<ram:CountryID>CN</ram:CountryID>                                        			   <!--OBLIGATORIO-->  <!--CODIGO DE PAIS-->
+				<ram:CountryName>CHINA</ram:CountryName>				                 		       <!--OBLIGATORIO--> 
+				<ram:CountrySubDivisionName>CINCINNATI</ram:CountrySubDivisionName>          		   <!--OPCIONAL-->
+				<ram:PostOfficeBox>094345</ram:PostOfficeBox>                                		   <!--OPCIONAL-->
+				<ram:CityID>CAN</ram:CityID>				                                 		   <!--OPCIONAL-->     <!--CODIGO DE CIUDAD-->
+				<ram:CountrySubDivisionID>NY</ram:CountrySubDivisionID>                    			   <!--OPCIONAL-->
+				<ram:SpecifiedAddressLocation>                                    					   <!--SEGMENTO OPCIONAL-->
+					<ram:ID>LHR</ram:ID>                                            		           <!--OPCIONAL-->
+					<ram:Name>NOMBRE</ram:Name>                                       			       <!--OPCIONAL-->
+					<ram:TypeCode>AIRPORT</ram:TypeCode>                               			       <!--OPCIONAL-->
+				</ram:SpecifiedAddressLocation>
+			</ram:PostalStructuredAddress>
+			<ram:DefinedTradeContact>                                                   <!--SEGMENTO OBLIGATORIO, puede ir VACIO--> 
+			<ram:PersonName>MARLON</ram:PersonName>                                                    <!--OPCIONAL-->
+			<ram:DepartmentName>COMPAÑIA MARLON</ram:DepartmentName>                                   <!--OPCIONAL-->
+			<ram:DirectTelephoneCommunication>                                          <!--SEGMENTO OPCIONAL-->
+                 <ram:CompleteNumber>55-31-67-89-77</ram:CompleteNumber>                               <!--OBLIGATORIO-->
+			</ram:DirectTelephoneCommunication>
+			<ram:FaxCommunication>                                                      <!--SEGMENTO OPCIONAL-->
+                 <ram:CompleteNumber>55-31-67-89-77</ram:CompleteNumber>                               <!--OBLIGATORIO-->
+			</ram:FaxCommunication>
+			<ram:URIEmailCommunication>                                                 <!--SEGMENTO OPCIONAL-->
+                 <ram:URIID>MARLON marlon.galicia@sat.gob.mx</ram:URIID>                               <!--OBLIGATORIO-->
+			</ram:URIEmailCommunication>
+			<ram:TelexCommunication>                                                    <!--SEGMENTO OPCIONAL-->
+                 <ram:CompleteNumber>55-31-67-89-77</ram:CompleteNumber>                               <!--OBLIGATORIO-->
+            </ram:TelexCommunication>
+            </ram:DefinedTradeContact>		
+		</ram:ConsignorParty>
+		<ram:ConsigneeParty>                                <!--SEGMENTO OBLIGATORIO--> 
+			<ram:PrimaryID schemeAgencyID="1">JUJO820323FB7</ram:PrimaryID>                  <!--OPCIONAL-->
+			<ram:AdditionalID>EAN</ram:AdditionalID>                                         <!--OPCIONAL-->
+			<ram:Name>JOSE ANTONIO DE LA TORRE BRAVO</ram:Name>                              <!--OBLIGATORIO--> 
+			<ram:AccountID>46578100</ram:AccountID>                                          <!--OPCIONAL-->
+			<ram:PostalStructuredAddress>                                         <!--SEGMENTO OBLIGATORIO--> 
+				<ram:PostcodeCode>03400</ram:PostcodeCode>                                    <!--OPCIONAL--> 
+				<ram:StreetName>AV LA CIMA 296 COTO J CASA 27 LA CI</ram:StreetName>          <!--OBLIGATORIO--> 
+				<ram:CityName>GUADALAJARA</ram:CityName>                                      <!--OBLIGATORIO--> 
+				<ram:CountryID>MX</ram:CountryID>                                             <!--OBLIGATORIO-->    <!--CODIGO DE PAIS-->
+				<ram:CountryName>MEXICO</ram:CountryName>                                     <!--OBLIGATORIO--> 
+				<ram:CountrySubDivisionName>JUAREZ</ram:CountrySubDivisionName>               <!--OPCIONAL-->
+				<ram:PostOfficeBox>12345</ram:PostOfficeBox>                                  <!--OPCIONAL-->
+				<ram:CityID>GDL</ram:CityID>                                                  <!--OPCIONAL-->       <!--CODIGO DE CIUDAD-->
+				<ram:CountrySubDivisionID>NY</ram:CountrySubDivisionID>                       <!--OPCIONAL-->
+				<ram:SpecifiedAddressLocation>             <!--SEGMENTO OPCIONAL-->
+					<ram:ID>LHR</ram:ID>                                                      <!--OPCIONAL-->
+					<ram:Name>NOMBRE</ram:Name>                                               <!--OPCIONAL-->
+					<ram:TypeCode>AIRPORT</ram:TypeCode>                                      <!--OPCIONAL-->
+				</ram:SpecifiedAddressLocation>
+			</ram:PostalStructuredAddress>
+			<ram:DefinedTradeContact>                      <!--SEGMENTO OBLIGATORIO-->                                           
+			    <ram:PersonName>RICARDO FLORES</ram:PersonName>                               <!--OPCIONAL-->
+			    <ram:DepartmentName>COMPAÑIA RICARDO</ram:DepartmentName>                     <!--OPCIONAL-->
+			    <ram:DirectTelephoneCommunication>                                            <!--OPCIONAL-->       
+                    <ram:CompleteNumber>55-34-67-89-90</ram:CompleteNumber>
+			    </ram:DirectTelephoneCommunication>
+			    <ram:FaxCommunication>                                                        <!--OPCIONAL-->
+                    <ram:CompleteNumber>55-34-67-89-91</ram:CompleteNumber>
+			    </ram:FaxCommunication>
+			    <ram:URIEmailCommunication>                                                   <!--OPCIONAL-->
+                    <ram:URIID>RICARDO FLORES@HOTMAIL.COM</ram:URIID>
+			    </ram:URIEmailCommunication>
+			    <ram:TelexCommunication>                                                      <!--OPCIONAL-->
+                    <ram:CompleteNumber>55-34-67-89-94</ram:CompleteNumber>
+			    </ram:TelexCommunication>
+			</ram:DefinedTradeContact>
+		</ram:ConsigneeParty>
+		<ram:FreightForwarderParty>                        <!--SEGMENTO OBLIGATORIO-->
+			<ram:PrimaryID schemeAgencyID="372">3L6U</ram:PrimaryID>                          <!--OBLIGATORIO-->   <!--CAAT VALIDO Y VIGENTE-->
+			<ram:AdditionalID>EAN</ram:AdditionalID>                                          <!--OPCIONAL-->
+			<ram:Name>DHL EXPRESS</ram:Name>                                                  <!--OBLIGATORIO-->    
+			<ram:AccountID>123456</ram:AccountID>                                             <!--OPCIONAL-->
+			<ram:PostalStructuredAddress>                  <!--SEGMENTO OBLIGATORIO-->
+				<ram:PostcodeCode>94345</ram:PostcodeCode>                                    <!--OPCIONAL-->
+				<ram:StreetName>236 WENDELL FORD BLVD</ram:StreetName>                        <!--OBLIGATORIO-->
+				<ram:CityName>CINCINNATI</ram:CityName>                                       <!--OBLIGATORIO-->
+				<ram:CountryID>US</ram:CountryID>                                             <!--OBLIGATORIO-->          <!--CODIGO DE PAIS-->
+				<ram:CountryName>ESTADOS UNIDOS</ram:CountryName>                             <!--OPCIONAL-->
+				<ram:CountrySubDivisionName>QUEBEC</ram:CountrySubDivisionName>               <!--OPCIONAL-->
+				<ram:PostOfficeBox>12345</ram:PostOfficeBox>                                  <!--OPCIONAL-->
+				<ram:CityID>CAN</ram:CityID>                                                  <!--OPCIONAL-->             <!--CODIGO DE CIUDAD-->
+				<ram:CountrySubDivisionID>NY</ram:CountrySubDivisionID>                       <!--OPCIONAL-->
+				<ram:SpecifiedAddressLocation>             <!--SEGMENTO OPCIONAL-->
+					<ram:ID>LHR</ram:ID>                                                      <!--OPCIONAL-->
+					<ram:Name>NOMBRE</ram:Name>                                               <!--OPCIONAL-->
+					<ram:TypeCode>AIRPORT</ram:TypeCode>                                      <!--OPCIONAL-->
+				</ram:SpecifiedAddressLocation>
+			</ram:PostalStructuredAddress>
+			<ram:DefinedTradeContact>                      <!--OBLIGATORIO, puede ir VACIO-->
+               <ram:PersonName>DHL EXPRESS</ram:PersonName>                                  <!--OPCIONAL-->
+               <ram:DepartmentName>MENSAJERIA DHL</ram:DepartmentName>                       <!--OPCIONAL-->
+               <ram:DirectTelephoneCommunication>                                            <!--OPCIONAL-->
+                   <ram:CompleteNumber>55-34-67-89-91</ram:CompleteNumber>                   <!--OBLIGATORIO-->
+               </ram:DirectTelephoneCommunication>
+               <ram:FaxCommunication>                                                        <!--OPCIONAL-->                                
+                   <ram:CompleteNumber>55-34-67-89-96</ram:CompleteNumber>                   <!--OBLIGATORIO-->
+               </ram:FaxCommunication>
+               <ram:URIEmailCommunication>                                                   <!--OPCIONAL-->
+                   <ram:URIID>MENSAJERIA HDL@GMAIL.COM</ram:URIID>                           <!--OBLIGATORIO-->
+               </ram:URIEmailCommunication>
+               <ram:TelexCommunication>                                                      <!--OPCIONAL-->                                                   
+                   <ram:CompleteNumber>55-34-67-89-99</ram:CompleteNumber>                   <!--OBLIGATORIO-->
+               </ram:TelexCommunication>
+            </ram:DefinedTradeContact>
+		</ram:FreightForwarderParty>
+		<ram:AssociatedParty>                              <!--SEGMENTO OPCIONAL-->
+        <ram:PrimaryID schemeAgencyID="1">LOGA890528</ram:PrimaryID>           			     <!--OPCIONAL-->
+        <ram:AdditionalID>EAN</ram:AdditionalID>                                  			 <!--OPCIONAL-->
+        <ram:Name>DHL EXPRESS</ram:Name>                                          			 <!--OBLIGATORIO-->
+        <ram:RoleCode>IM</ram:RoleCode>                                           			 <!--OBLIGATORIO-->
+        <ram:Role>DHL EXPRESS</ram:Role>                                          			 <!--OPCIONAL-->
+              <ram:PostalStructuredAddress>                <!--SEGMENTO OBLIGATORIO-->
+                 <ram:PostcodeCode>04250</ram:PostcodeCode>                                  <!--OPCIONAL-->
+                 <ram:StreetName>CALLE BENITO JUAREZ 33</ram:StreetName>         			 <!--OPCIONAL-->
+                 <ram:CityName>CINCINNATI</ram:CityName>                         			 <!--OBLIGATORIO-->
+                 <ram:CountryID>US</ram:CountryID>                                			 <!--OBLIGATORIO-->        <!--CODIGO DE PAIS-->
+                 <ram:CountryName>ESTADOS UNIDOS</ram:CountryName>               			 <!--OPCIONAL-->
+                 <ram:CountrySubDivisionName>QUEBEC</ram:CountrySubDivisionName>  			 <!--OPCIONAL-->
+                 <ram:PostOfficeBox>12345</ram:PostOfficeBox>                     			 <!--OPCIONAL-->
+                 <ram:CityID>CAN</ram:CityID>                                     			 <!--OPCIONAL-->           <!--CODIGO DE CIUDAD-->
+                 <ram:CountrySubDivisionID>NY</ram:CountrySubDivisionID>         			 <!--OPCIONAL-->
+                 <ram:SpecifiedAddressLocation>            <!--SEGMENTO OPCIONAL-->
+                     <ram:ID>LHR</ram:ID>                                         			 <!--OPCIONAL-->
+                     <ram:Name>NOMBRE</ram:Name>                                  		  	 <!--OPCIONAL-->
+                     <ram:TypeCode>AIRPORT</ram:TypeCode>                         			 <!--OPCIONAL-->
+                 </ram:SpecifiedAddressLocation>
+              </ram:PostalStructuredAddress>
+              <ram:DefinedTradeContact>                    <!--SEGMENTO OBLIGATORIO-->
+                  <ram:PersonName>DHL EXPRESS 2</ram:PersonName>                    		 <!--OPCIONAL-->
+                  <ram:DepartmentName>COMPAÑIA DOS</ram:DepartmentName>          			 <!--OPCIONAL-->
+                  <ram:DirectTelephoneCommunication>                            			 <!--OPCIONAL-->
+                      <ram:CompleteNumber>55-34-67-89-91</ram:CompleteNumber>                <!--OBLIGATORIO-->
+                  </ram:DirectTelephoneCommunication> 
+                  <ram:FaxCommunication>                                   					 <!--OPCIONAL--> 
+                      <ram:CompleteNumber>55-34-67-89-97</ram:CompleteNumber>     			 <!--OBLIGATORIO-->
+                  </ram:FaxCommunication>
+                  <ram:URIEmailCommunication>                                                <!--OPCIONAL-->
+                      <ram:URIID>DOS EMPRESADOS@HOTMAIL.COM</ram:URIID>                      <!--OPCIONAL-->
+                  </ram:URIEmailCommunication>
+				  <ram:TelexCommunication>                                                   <!--OPCIONAL-->
+                      <ram:CompleteNumber>55-34-67-89-10</ram:CompleteNumber>                <!--OPCIONAL-->
+                 </ram:TelexCommunication>
+              </ram:DefinedTradeContact>
+        </ram:AssociatedParty>
+	    <ram:ApplicableTransportCargoInsurance>            <!--SEGMENTO OPCIONAL-->
+            <ram:CoverageInsuranceParty>                   									 <!--OBLIGATORIO--> 
+                  <ram:Role>CONSIGNOR</ram:Role>                          					 <!--OBLIGATORIO-->
+            </ram:CoverageInsuranceParty>
+        </ram:ApplicableTransportCargoInsurance>
+	    <ram:OriginLocation>                               <!--SEGMENTO OBLIGATORIO--> 
+			<ram:ID>EZE</ram:ID>                                             			     <!--OBLIGATORIO-->      <!-- CLAVE IATA-->                       
+			<ram:Name>BUENOS AIRES</ram:Name>                                  				 <!--OPCIONAL-->
+		</ram:OriginLocation>
+		<ram:FinalDestinationLocation>                     <!--SEGMENTO OBLIGATORIO--> 
+			<ram:ID>CUN</ram:ID>                                                             <!--OBLIGATORIO-->      <!-- CLAVE IATA-->
+			<ram:Name>CANCUN</ram:Name>                                                      <!--OPCIONAL-->
+		</ram:FinalDestinationLocation>		
+		<ram:SpecifiedLogisticsTransportMovement>          <!--SEGMENTO OBLIGATORIO--> 
+			<ram:StageCode>On-Carriage</ram:StageCode>                          <!--OBLIGATORIO-->   <!--Pre-Carriage, Main-Carriage o On-Carriage-->
+			<ram:ModeCode>4</ram:ModeCode>                                      <!--OBLIGATORIO-->   <!-- SIEMPRE DEBE IR 4-->
+			<ram:Mode>Air transport</ram:Mode>                                  <!--OPCIONAL-->      <!--Siempre debe declararse  "Air Transport"-->
+			<ram:ID>BA1234</ram:ID>                                             <!--OPCIONAL-->
+			<ram:SequenceNumeric>1</ram:SequenceNumeric>                        <!--OPCIONAL-->
+			<ram:UsedLogisticsTransportMeans>                         <!--SEGMENTO OPCIONAL--> 
+                <ram:Name>TRANSPORTES ORI</ram:Name>                             <!--OBLIGATORIO-->
+            </ram:UsedLogisticsTransportMeans>
+        <ram:ArrivalEvent>                                            <!--SEGMENTO OPCIONAL--> 
+          <ram:ScheduledOccurrenceDateTime>2024-06-24T11:55:00.101-05:00</ram:ScheduledOccurrenceDateTime> <!--OPCIONAL-->
+          <ram:OccurrenceArrivalLocation>                             <!--SEGMENTO OPCIONAL--> 
+               <ram:ID>MEX</ram:ID>                                              <!--OPCIONAL-->    <!--CLAVE IATA-->
+               <ram:Name>GDL</ram:Name>                                          <!--OPCIONAL-->
+               <ram:TypeCode>AIRPORT</ram:TypeCode>                              <!--OPCIONAL-->    <!--"Seaport", "Airport", "Freight Terminal", "Rail Station", "Other".-->
+          </ram:OccurrenceArrivalLocation>
+		</ram:ArrivalEvent>
+		<ram:DepartureEvent>                                          <!--SEGMENTO OPCIONAL--> 
+              <ram:ScheduledOccurrenceDateTime>2024-06-25T11:55:00.101-05:00</ram:ScheduledOccurrenceDateTime> <!--OPCIONAL-->
+              <ram:OccurrenceDepartureLocation>                       <!--SEGMENTO OPCIONAL--> 
+                   <ram:ID>EZE</ram:ID>                                          <!--OPCIONAL-->    <!--CLAVE IATA-->
+                   <ram:Name>BUENOS AIRES</ram:Name>                             <!--OPCIONAL-->
+                   <ram:TypeCode>AIRPORT</ram:TypeCode>                          <!--OPCIONAL-->    <!--"Seaport", "Airport", "Freight Terminal", "Rail Station", "Other".-->
+              </ram:OccurrenceDepartureLocation>
+        </ram:DepartureEvent>
+		</ram:SpecifiedLogisticsTransportMovement>
+		<ram:UtilizedLogisticsTransportEquipment>          <!--SEGMENTO OPCIONAL--> 
+             <ram:ID>123456789</ram:ID>                                     			     <!--OPCIONAL-->
+             <ram:CharacteristicCode>CONT</ram:CharacteristicCode>          			     <!--OPCIONAL-->
+             <ram:Characteristic>10 POR 30</ram:Characteristic>             			     <!--OPCIONAL-->
+             <ram:AffixedLogisticsSeal>                    <!--SEGMENTO OPCIONAL--> 
+                 <ram:ID>SELLO</ram:ID>                                         			 <!--OPCIONAL-->
+             </ram:AffixedLogisticsSeal>
+        </ram:UtilizedLogisticsTransportEquipment>
+	    <!-- mercancia peligrosa -->
+			<ram:HandlingSPHInstructions>                  <!--SEGMENTO OPCIONAL--> 
+               <ram:Description>MERCANCIA PELIGROSA</ram:Description>          				 <!--OPCIONAL-->
+               <ram:DescriptionCode>EAP</ram:DescriptionCode>                   			 <!--OBLIGATORIO-->  <!--CATALOGO MERCANCIAS PELIGROSAS-->
+            </ram:HandlingSPHInstructions>
+            <ram:HandlingSSRInstructions>                  <!--SEGMENTO OPCIONAL--> 
+               <ram:Description>MUST BE KEPT ABOVE 5 DEGREES CELSIUS</ram:Description>		 <!--OPCIONAL-->
+               <ram:DescriptionCode>ECC</ram:DescriptionCode>                  				 <!--OBLIGATORIO-->  <!--CATALOGO MERCANCIAS PELIGROSAS-->
+            </ram:HandlingSSRInstructions>
+            <ram:HandlingOSIInstructions>                  <!--SEGMENTO OPCIONAL--> 
+              <ram:Description>EXTRA CHARGE DUE TO SPECIAL HANDLING REQUIREMEN</ram:Description><!--OPCIONAL-->
+              <ram:DescriptionCode>BUP</ram:DescriptionCode>                   				 <!--OBLIGATORIO-->  <!--CATALOGO MERCANCIAS PELIGROSAS-->
+            </ram:HandlingOSIInstructions>	
+        <ram:IncludedAccountingNote>                       <!--SEGMENTO OPCIONAL--> 
+            <ram:ContentCode>COD</ram:ContentCode>                              <!--OBLIGATORIO--> 
+            <ram:Content>PAGO POR CHEQUE CERTIFICADO</ram:Content>              <!--OPCIONAL-->
+        </ram:IncludedAccountingNote>		
+		<ram:IncludedCustomsNote>                          <!--SEGMENTO OBLIGATORIO-->
+			<ram:ContentCode>D</ram:ContentCode>                                <!--OBLIGATORIO--> 
+			<ram:Content>NA</ram:Content>                                       <!--OBLIGATORIO--> 
+			<ram:SubjectCode>IMP</ram:SubjectCode>                              <!--OBLIGATORIO-->  <!--IMP, EXP-->
+			<ram:CountryID>MX</ram:CountryID>                                   <!--OPCIONAL-->     <!--CODIGO DE PAIS-->
+		</ram:IncludedCustomsNote>		
+		<ram:AssociatedReferenceDocument>                  <!--SEGMENTO OPCIONAL-->
+           <ram:ID>123458936</ram:ID>                                           <!--OBLIGATORIO--> 
+           <ram:IssueDateTime>2023-10-06T11:55:00.101-05:00</ram:IssueDateTime> <!--OPCIONAL-->
+           <ram:TypeCode>380</ram:TypeCode>                                     <!--OBLIGATORIO--> 
+           <ram:Name>FACTURA</ram:Name>                                         <!--OPCIONAL-->
+        </ram:AssociatedReferenceDocument>
+        <ram:AssociatedConsignmentCustomsProcedure>        <!--SEGMENTO OPCIONAL-->
+           <ram:GoodsStatusCode>UE</ram:GoodsStatusCode>                        			 <!--OBLIGATORIO--> 
+        </ram:AssociatedConsignmentCustomsProcedure>
+		<ram:ApplicableOriginCurrencyExchange>             <!--SEGMENTO OBLIGATORIO-->
+			<ram:SourceCurrencyCode>USD</ram:SourceCurrencyCode>              			     <!--OBLIGATORIO-->   <!--CODIGO DE MONEDA-->
+		</ram:ApplicableOriginCurrencyExchange>
+		<ram:ApplicableDestinationCurrencyExchange>        <!--SEGMENTO OPCIONAL-->
+           <ram:TargetCurrencyCode>BOB</ram:TargetCurrencyCode>                 			 <!--OBLIGATORIO-->             
+           <ram:MarketID>12345</ram:MarketID>                                   			 <!--OPCIONAL-->
+           <ram:ConversionRate>23</ram:ConversionRate>                          			 <!--OPCIONAL-->
+        </ram:ApplicableDestinationCurrencyExchange>
+	    <ram:ApplicableLogisticsServiceCharge>             <!--SEGMENTO OPCIONAL-->
+          <ram:ServiceTypeCode>A</ram:ServiceTypeCode>                          			 <!--OBLIGATORIO-->
+        </ram:ApplicableLogisticsServiceCharge>
+        <ram:ApplicableLogisticsAllowanceCharge>           <!--SEGMENTO OPCIONAL-->
+            <ram:ID>RA</ram:ID>                                                	             <!--OBLIGATORIO--> 
+            <ram:Reason>AQUI SE DESCRIBE LA CARGA</ram:Reason>                  			 <!--OPCIONAL-->
+            <ram:ActualAmount currencyID="USD">23</ram:ActualAmount>            			 <!--OBLIGATORIO--> 
+            <ram:PartyTypeCode>C</ram:PartyTypeCode>                           				 <!--OBLIGATORIO--> 
+        </ram:ApplicableLogisticsAllowanceCharge>		
+		<ram:IncludedHouseConsignmentItem>                  <!--SEGMENTO OBLIGATORIO-->
+			<ram:SequenceNumeric>1</ram:SequenceNumeric>                        			 <!--OBLIGATORIO--> 
+			<ram:TypeCode listAgencyID="1">070190</ram:TypeCode>                			 <!--OPCIONAL-->
+			<ram:GrossWeightMeasure unitCode="KGM">400.00</ram:GrossWeightMeasure> 			 <!--OBLIGATORIO-->   <!--Código de la Unidad de Peso-->
+			<ram:GrossVolumeMeasure unitCode="KGM">23.0</ram:GrossVolumeMeasure>			 <!--OBLIGATORIO-->   <!--Código de la Unidad del VOLUMEN-->
+            <ram:TotalChargeAmount currencyID="USD">23.0</ram:TotalChargeAmount>			 <!--OPCIONAL-->
+            <ram:PackageQuantity>23</ram:PackageQuantity>                       			 <!--OPCIONAL-->
+		    <ram:PieceQuantity>670</ram:PieceQuantity>                          			 <!--OBLIGATORIO-->     
+		    <ram:VolumetricFactor>CONVERSION</ram:VolumetricFactor>             			 <!--OPCIONAL-->
+            <ram:Information>12345</ram:Information>				            			 <!--OPCIONAL-->
+			<ram:NatureIdentificationTransportCargo>         <!--SEGMENTO OBLIGATORIO-->
+				<ram:Identification>400KGM Y 670PZAS</ram:Identification>                    <!--OBLIGATORIO--> 
+			</ram:NatureIdentificationTransportCargo>			
+			<ram:OriginCountry>                              <!--SEGMENTO OPCIONAL-->
+                <ram:ID>CH</ram:ID>                                                          <!--OBLIGATORIO-->
+            </ram:OriginCountry>
+		    <ram:AssociatedUnitLoadTransportEquipment>       <!--SEGMENTO OPCIONAL-->
+                <ram:ID>1234</ram:ID>                                                        <!--OBLIGATORIO-->
+                <ram:TareWeightMeasure unitCode="KGM">23.0</ram:TareWeightMeasure>           <!--OPCIONAL-->     <!--Código de la Unidad de Peso-->
+                <ram:LoadedPackageQuantity>23</ram:LoadedPackageQuantity>                    <!--OPCIONAL-->
+                <ram:CharacteristicCode>ASE</ram:CharacteristicCode>            			 <!--OBLIGATORIO-->
+                <ram:OperatingParty>                         <!--SEGMENTO OBLIGATORIO-->
+                     <ram:PrimaryID schemeAgencyID="1">1</ram:PrimaryID>        			 <!--OBLIGATORIO-->
+                </ram:OperatingParty>
+            </ram:AssociatedUnitLoadTransportEquipment>					
+			<ram:TransportLogisticsPackage>                  <!--SEGMENTO OPCIONAL-->
+				<ram:ItemQuantity>1</ram:ItemQuantity>                              		 <!--OBLIGATORIO-->
+				<ram:GrossWeightMeasure unitCode="KGM">23</ram:GrossWeightMeasure>  		 <!--OPCIONAL-->
+                <ram:LinearSpatialDimension>                 <!--SEGMENTO OPCIONAL-->
+                      <ram:WidthMeasure unitCode="CMT">23</ram:WidthMeasure>        		 <!--OBLIGATORIO-->   <!--Código de la unidad de Ancho-->
+                      <ram:LengthMeasure unitCode="CMT">23</ram:LengthMeasure>      		 <!--OBLIGATORIO-->   <!--Código de la unidad de Largo-->
+                      <ram:HeightMeasure unitCode="CMT">23</ram:HeightMeasure>       		 <!--OBLIGATORIO-->   <!--Código de la Unidad de Altura-->
+                </ram:LinearSpatialDimension>
+			</ram:TransportLogisticsPackage>			
+			<ram:ApplicableFreightRateServiceCharge>         <!--SEGMENTO OBLIGATORIO-->
+				<ram:CommodityItemID>AB</ram:CommodityItemID>                       		 <!--OPCIONAL-->
+				<ram:ChargeableWeightMeasure unitCode="KGM">0.6</ram:ChargeableWeightMeasure>  <!--OBLIGATORIO-->
+				<ram:AppliedRate>23</ram:AppliedRate>                               		 <!--OPCIONAL-->
+                <ram:AppliedAmount currencyID="USD">23</ram:AppliedAmount>           		 <!--OPCIONAL-->
+			</ram:ApplicableFreightRateServiceCharge>			
+			<ram:AssociatedReferenceDocument>                <!--SEGMENTO OPCIONAL-->
+               <ram:ID>123456936</ram:ID>                                           		 <!--OBLIGATORIO--> 
+               <ram:IssueDateTime>2023-10-06T11:55:00.101-05:00</ram:IssueDateTime> 		 <!--OPCIONAL-->
+               <ram:TypeCode>380</ram:TypeCode>                                     		 <!--OBLIGATORIO--> 
+               <ram:Name>123435</ram:Name>                                           		 <!--OPCIONAL-->
+            </ram:AssociatedReferenceDocument>			
+			<ram:SpecifiedRateCombinationPointLocation>      <!--SEGMENTO OPCIONAL-->
+               <ram:ID>CDG</ram:ID>                                                 		 <!--OBLIGATORIO--> 
+            </ram:SpecifiedRateCombinationPointLocation>			
+		</ram:IncludedHouseConsignmentItem>
+		
+	</ram:IncludedHouseConsignment>
+   </rsm:MasterConsignment>
+</rsm:HouseWaybill>
+
+	
+	

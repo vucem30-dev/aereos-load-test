@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsm:FlightManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:rsm="iata:flightmanifest:1"
+	xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2"
+	xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:8"
+	xmlns:ram="iata:datamodel:3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="iata:flightmanifest:1 FlightManifest_1.xsd">
+<rsm:MessageHeaderDocument>                       <!--SEGMENTO OBLIGATORIO-->
+	<ram:ID>%ID_MANIFIESTO%</ram:ID>                               					<!-- CAMPO OBLIGATORIO --> <!--Identificador de la transacción, consecutivo -->
+	<ram:Name>Transport Loading Report</ram:Name>      					<!-- CAMPO OBLIGATORIO -->
+	<ram:TypeCode>122</ram:TypeCode>                   					<!-- CAMPO OBLIGATORIO -->
+	<ram:IssueDateTime>2025-04-21T11:55:00.101-05:00</ram:IssueDateTime><!-- CAMPO OBLIGATORIO -->
+	<ram:PurposeCode>Creation</ram:PurposeCode>        					<!-- CAMPO OBLIGATORIO -->
+	<ram:VersionID>2.00</ram:VersionID>                					<!-- CAMPO OBLIGATORIO -->
+	<ram:ConversationID>001134</ram:ConversationID>    					<!-- CAMPO OPCIONAL -->
+	<ram:SenderParty>                             <!--SEGMENTO OBLIGATORIO-->
+		<ram:PrimaryID schemeID="C">3L6U</ram:PrimaryID>				<!-- CAMPO OBLIGATORIO -->   <!--CAAT VALIDO Y VIGENTE-->
+	</ram:SenderParty>
+	<ram:RecipientParty>                          <!--SEGMENTO OBLIGATORIO-->
+		<ram:PrimaryID schemeID="C">VU</ram:PrimaryID>					<!-- CAMPO OBLIGATORIO -->
+	</ram:RecipientParty>
+</rsm:MessageHeaderDocument>
+<rsm:BusinessHeaderDocument>                      <!--SEGMENTO OBLIGATORIO-->
+	<ram:ID>%ID_MANIFIESTO%</ram:ID>                                                             <!--Nombre del MASTER, debe ser unico -->
+	<ram:IncludedHeaderNote>                      <!-- SEGMENTO OPCIONAL -->
+      <ram:ContentCode>A</ram:ContentCode>             					<!-- CAMPO OPCIONAL -->
+      <ram:Content>TEXTO LIBRE HASTA 256</ram:Content> 					<!-- CAMPO OPCIONAL -->
+    </ram:IncludedHeaderNote>
+</rsm:BusinessHeaderDocument>
+<rsm:LogisticsTransportMovement>                  <!--SEGMENTO OBLIGATORIO-->
+	<ram:StageCode>Main-Carriage</ram:StageCode>      					<!-- CAMPO OBLIGATORIO -->
+	<ram:ModeCode>4</ram:ModeCode>                     					<!-- CAMPO OBLIGATORIO -->
+	<ram:Mode>Air Transport</ram:Mode>                 					<!-- CAMPO OPCIONAL -->
+	<ram:ID>5733</ram:ID>                              					<!-- CAMPO OBLIGATORIO -->
+	<ram:SequenceNumeric>1</ram:SequenceNumeric>	   					<!-- CAMPO OBLIGATORIO -->
+	<ram:TotalGrossWeightMeasure unitCode="KGM">1160.0</ram:TotalGrossWeightMeasure> <!-- OPCIONAL -->
+    <ram:TotalGrossVolumeMeasure unitCode="MTQ">23</ram:TotalGrossVolumeMeasure>   <!-- OPCIONAL -->
+    <ram:TotalPackageQuantity>23</ram:TotalPackageQuantity>				<!-- OPCIONAL --> 
+    <ram:TotalPieceQuantity>680</ram:TotalPieceQuantity> 				<!-- OPCIONAL -->
+    <ram:MasterResponsibleTransportPerson>        <!-- SEGMENTO OPCIONAL -->
+      <ram:Name>CAPITAN PRAXIS</ram:Name>               				<!-- opcional -->
+    </ram:MasterResponsibleTransportPerson>
+    <ram:UsedLogisticsTransportMeans>             <!-- SEGMENTO OPCIONAL -->
+      <ram:Name>N659UA</ram:Name>                      					<!-- opcional -->
+      <ram:RegistrationCountry>                   <!-- SEGMENTO OPCIONAL -->
+           <ram:ID>CH</ram:ID>                        				    <!-- CAMPO OBLIGATORIO -->
+      </ram:RegistrationCountry>
+    </ram:UsedLogisticsTransportMeans>	
+	<ram:DepartureEvent>                          <!--SEGMENTO OBLIGATORIO-->
+		<ram:DepartureOccurrenceDateTime>2025-04-21T11:55:00.101-05:00</ram:DepartureOccurrenceDateTime><!-- CAMPO OBLIGATORIO -->
+		<ram:DepartureDateTimeTypeCode>S</ram:DepartureDateTimeTypeCode><!-- CAMPO OBLIGATORIO -->
+		<ram:OccurrenceDepartureLocation>         <!--SEGMENTO OBLIGATORIO-->
+			<ram:ID>CTG</ram:ID>                       					<!-- CAMPO OBLIGATORIO -->      <!--CLAVE IATA-->
+            <ram:Name>Cartagena</ram:Name>			   					<!-- opcional -->
+			<ram:TypeCode>Airport</ram:TypeCode>      					<!-- CAMPO OBLIGATORIO --> 
+		</ram:OccurrenceDepartureLocation>
+	</ram:DepartureEvent>	
+	<ram:IncludedCustomsNote>                     <!-- SEGMENTO OBLIGATORIO--> 
+        <ram:ContentCode>A</ram:ContentCode>           					<!-- opcional -->
+        <ram:Content>BCBP123 </ram:Content>           					<!-- opcional -->
+        <ram:SubjectCode>IMP</ram:SubjectCode>         					<!-- CAMPO OBLIGATORIO -->   <!--CLAVES: IMP, EXP, TRN, TID -->
+        <ram:CountryID>CH</ram:CountryID>              					<!-- opcional -->
+    </ram:IncludedCustomsNote>
+    <ram:RelatedConsignmentCustomsProcedure>      <!-- SEGMENTO OPCIONAL --> 
+      <ram:GoodsStatusCode>T2</ram:GoodsStatusCode>    					<!-- CAMPO OBLIGATORIO --> 
+    </ram:RelatedConsignmentCustomsProcedure>
+</rsm:LogisticsTransportMovement>
+<rsm:ArrivalEvent>                                <!--SEGMENTO OBLIGATORIO-->
+	<ram:ArrivalOccurrenceDateTime>2025-04-21T11:55:00.101-05:00</ram:ArrivalOccurrenceDateTime><!-- CAMPO OBLIGATORIO -->
+	<ram:ArrivalDateTimeTypeCode>S</ram:ArrivalDateTimeTypeCode>    	<!-- CAMPO OBLIGATORIO -->
+	<ram:DepartureOccurrenceDateTime>2025-04-21T11:55:00.101-05:00</ram:DepartureOccurrenceDateTime><!-- CAMPO OBLIGATORIO -->
+	<ram:DepartureDateTimeTypeCode>S</ram:DepartureDateTimeTypeCode>	<!-- CAMPO OBLIGATORIO -->
+	<ram:OccurrenceArrivalLocation>               <!--SEGMENTO OBLIGATORIO-->
+		<ram:ID>MEX</ram:ID>                           					<!-- CAMPO OBLIGATORIO --> 
+		<ram:Name>MEXICO</ram:Name>                   					<!-- CAMPO OPCIONAL -->
+		<ram:TypeCode>Airport</ram:TypeCode>          					<!-- CAMPO OBLIGATORIO -->
+		<ram:FirstArrivalCountryID>MX</ram:FirstArrivalCountryID>		<!-- CAMPO OBLIGATORIO -->
+	</ram:OccurrenceArrivalLocation>
+	<ram:AssociatedTransportCargo>                <!--SEGMENTO OBLIGATORIO-->
+		<ram:TypeCode>BLK</ram:TypeCode>                                <!-- CAMPO OBLIGATORIO -->
+		<ram:UtilizedUnitLoadTransportEquipment>  <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+            <ram:ID>1234</ram:ID>                                       <!-- CAMPO OPCIONAL -->
+            <ram:GrossWeightMeasure unitCode="KGM">1380.0</ram:GrossWeightMeasure><!-- CAMPO OPCIONAL -->
+            <ram:GrossVolumeMeasure unitCode="MTQ">23</ram:GrossVolumeMeasure><!-- CAMPO OPCIONAL -->
+            <ram:PieceQuantity>23</ram:PieceQuantity>                   <!-- CAMPO OPCIONAL -->
+            <ram:BuildTypeCode>18000</ram:BuildTypeCode>                <!-- CAMPO OPCIONAL -->
+            <ram:CharacteristicCode>ASE</ram:CharacteristicCode>        <!--CAMPO OBLIGATORIO -->
+            <ram:UsedCapacityCode>1</ram:UsedCapacityCode>              <!-- CAMPO OPCIONAL -->
+            <ram:OperationalStatusCode>L</ram:OperationalStatusCode>    <!-- CAMPO OPCIONAL -->
+            <ram:LoadingRemark>3535</ram:LoadingRemark>                 <!-- CAMPO OPCIONAL -->
+            <ram:PositioningEvent>                  <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+                <ram:OccurrencePositioningLocation> <!--SEGMENTO OBLIGATORIO-->
+                    <ram:ID>21P</ram:ID>                                <!-- CAMPO OBLIGATORIO -->
+                </ram:OccurrencePositioningLocation>
+            </ram:PositioningEvent>
+            <ram:OperatingParty>                    <!--SEGMENTO OBLIGATORIO-->
+                <ram:PrimaryID schemeAgencyID="3">3</ram:PrimaryID>      <!-- CAMPO OBLIGATORIO -->
+            </ram:OperatingParty>
+            <ram:OnCarriageTransportMovement>       <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+                <ram:ID>ID VUELO 123</ram:ID>                            <!-- CAMPO OPCIONAL -->
+                <ram:CarrierParty>                  <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+                      <ram:PrimaryID schemeAgencyID="3">3</ram:PrimaryID><!-- CAMPO OBLIGATORIO -->
+                </ram:CarrierParty>
+                <ram:OnCarriageEvent>               <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+                      <ram:DepartureOccurrenceDateTime>2025-04-21T15:10:10</ram:DepartureOccurrenceDateTime><!-- CAMPO OBLIGATORIO -->
+                      <ram:DepartureDateTimeTypeCode>A</ram:DepartureDateTimeTypeCode><!-- CAMPO OBLIGATORIO -->
+                </ram:OnCarriageEvent>
+                <ram:ArrivalDestinationEvent>       <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+                      <ram:OccurrenceDestinationLocation><!--SEGMENTO OBLIGATORIO-->
+                          <ram:ID>LHR</ram:ID>                            <!-- CAMPO OBLIGATORIO -->
+                      </ram:OccurrenceDestinationLocation>
+                </ram:ArrivalDestinationEvent>
+            </ram:OnCarriageTransportMovement>
+        </ram:UtilizedUnitLoadTransportEquipment>		
+		<ram:IncludedMasterConsignment>           <!--SEGMENTO OBLIGATORIO-->   <!-- Este segmento se repite por Cada master-->
+			<ram:GrossWeightMeasure unitCode="KGM">500.00</ram:GrossWeightMeasure><!-- CAMPO OBLIGATORIO -->
+			<ram:GrossVolumeMeasure unitCode="MTQ">23</ram:GrossVolumeMeasure>  <!-- CAMPO OPCIONAL -->
+			<ram:DensityGroupCode>9</ram:DensityGroupCode>         		  <!-- OPCIONAL -->
+			<ram:PackageQuantity>23</ram:PackageQuantity>          		  <!-- OPCIONAL -->
+			<ram:TotalPieceQuantity>500</ram:TotalPieceQuantity>  		  <!-- CAMPO OBLIGATORIO -->
+			<ram:SummaryDescription>500 kilos y 150 piezas</ram:SummaryDescription><!-- CAMPO OBLIGATORIO -->
+			<ram:TransportSplitDescription>T</ram:TransportSplitDescription><!-- CAMPO OBLIGATORIO -->
+			<ram:MovementPriorityCode>H</ram:MovementPriorityCode> 		  <!-- OPCIONAL -->			 
+			<ram:TransportContractDocument>        <!--SEGMENTO OBLIGATORIO-->
+				<ram:ID>%NAME_MANIFIESTO_MASTER%</ram:ID>                      		  <!-- CAMPO OBLIGATORIO -->   <!--Debe existir la Master en B.D.-->
+			</ram:TransportContractDocument>
+			<ram:OriginLocation>                   <!--SEGMENTO OBLIGATORIO-->
+				<ram:ID>CVG</ram:ID>                               		  <!-- CAMPO OBLIGATORIO -->   <!--CLAVE IATA-->
+				<ram:Name>CINCINNATI</ram:Name>                     	  <!-- OPCIONAL -->
+			</ram:OriginLocation>
+			<ram:FinalDestinationLocation>         <!--SEGMENTO OBLIGATORIO-->
+				<ram:ID>GDL</ram:ID>                               		  <!-- CAMPO OBLIGATORIO -->   <!--CLAVE IATA-->
+				<ram:Name>GUADALAJAR</ram:Name>                      	  <!-- OPCIONAL -->
+			</ram:FinalDestinationLocation>			
+			<!-- mercancia peligrosa -->
+			<ram:HandlingSPHInstructions>          <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+               <ram:Description>MERCANCIA PELIGROSA</ram:Description> 	 <!-- OPCIONAL -->
+               <ram:DescriptionCode>EAP</ram:DescriptionCode>      		 <!-- OPCIONAL -->
+            </ram:HandlingSPHInstructions>
+            <ram:HandlingSSRInstructions>          <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+               <ram:Description>MUST BE KEPT ABOVE 5 DEGREES CELSIUS</ram:Description><!-- OPCIONAL -->
+               <ram:DescriptionCode>ECC</ram:DescriptionCode>     		 <!-- OPCIONAL -->
+            </ram:HandlingSSRInstructions>
+            <ram:HandlingOSIInstructions>          <!-- ESTE ES UN SEGMENTO OPCIONAL -->
+              <ram:Description>EXTRA CHARGE DUE TO SPECIAL HANDLING REQUIREMEN</ram:Description><!-- OPCIONAL -->
+              <ram:DescriptionCode>BUP</ram:DescriptionCode>       		<!-- OPCIONAL -->
+            </ram:HandlingOSIInstructions>			
+			<!-- Segmento TIPO DE OPERACION -->	
+            <ram:IncludedCustomsNote>              <!--SEGMENTO OBLIGATORIO-->
+				<ram:ContentCode>A</ram:ContentCode>               		<!-- OPCIONAL -->
+				<ram:Content>3</ram:Content>                       		<!--CAMPO OBLIGATORIO -->    <!--CLAVE IATA o RECINTO-->
+				<ram:SubjectCode>TID</ram:SubjectCode>             		<!--CAMPO OBLIGATORIO: IMP, EXP, TRN, TID-->
+				<ram:CountryID>CH</ram:CountryID>                  		<!-- OPCIONAL -->
+			</ram:IncludedCustomsNote>					
+			<ram:AssociatedConsignmentCustomsProcedure> <!-- SEGMENTO OPCIONAL -->
+                <ram:GoodsStatusCode>T2</ram:GoodsStatusCode>      		<!-- OPCIONAL -->
+            </ram:AssociatedConsignmentCustomsProcedure>			
+			<ram:TransportLogisticsPackage>        <!-- SEGMENTO OPCIONAL -->
+            <ram:ItemQuantity>1</ram:ItemQuantity>                		<!--CAMPO OBLIGATORIO -->
+            <ram:GrossWeightMeasure unitCode="KGM">23.0</ram:GrossWeightMeasure><!--CAMPO OBLIGATORIO -->
+                <ram:LinearSpatialDimension>      <!--SEGMENTO OBLIGATORIO-->
+                    <ram:WidthMeasure unitCode="CMT">23</ram:WidthMeasure><!--CAMPO OBLIGATORIO -->
+                    <ram:LengthMeasure unitCode="CMT">23</ram:LengthMeasure><!--CAMPO OBLIGATORIO -->
+                    <ram:HeightMeasure unitCode="CMT">23</ram:HeightMeasure><!--CAMPO OBLIGATORIO -->
+                </ram:LinearSpatialDimension>
+            </ram:TransportLogisticsPackage>			
+			<ram:OnCarriageTransportMovement>      <!--SEGMENTO OBLIGATORIO-->
+				<ram:ID>0133</ram:ID>                           		<!--CAMPO OBLIGATORIO -->
+				<ram:CarrierParty>                <!--SEGMENTO OBLIGATORIO-->
+					<ram:PrimaryID schemeAgencyID="3">3L6U</ram:PrimaryID><!--CAMPO OBLIGATORIO -->
+				</ram:CarrierParty> 
+				<ram:OnCarriageEvent>             <!-- SEGMENTO OPCIONAL -->
+					<ram:DepartureOccurrenceDateTime>2025-04-21T11:55:00.101-05:00</ram:DepartureOccurrenceDateTime><!--CAMPO OBLIGATORIO-->
+					<ram:DepartureDateTimeTypeCode>S</ram:DepartureDateTimeTypeCode><!--CAMPO OBLIGATORIO-->
+				</ram:OnCarriageEvent>
+				<ram:ArrivalDestinationEvent>     <!-- SEGMENTO OPCIONAL -->
+					<ram:OccurrenceDestinationLocation><!--SEGMENTO OBLIGATORIO-->
+						<ram:ID>VER</ram:ID>           					<!--CAMPO OBLIGATORIO -->
+						<ram:Name>VERACRUZ</ram:Name>  					<!-- OPCIONAL -->
+					</ram:OccurrenceDestinationLocation>
+				</ram:ArrivalDestinationEvent>
+			</ram:OnCarriageTransportMovement>			
+			<ram:IncludedMasterConsignmentItem>    <!-- SEGMENTO OPCIONAL -->
+                   <ram:TypeCode listAgencyID="1">301910</ram:TypeCode> <!-- OPCIONAL -->
+            </ram:IncludedMasterConsignmentItem>			
+		</ram:IncludedMasterConsignment>
+		
+	</ram:AssociatedTransportCargo>
+</rsm:ArrivalEvent>
+</rsm:FlightManifest>
+

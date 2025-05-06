@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="100 Users">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1000</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Read and Encode XML">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="script">// =================== CLASE Values ===================
+
+@groovy.transform.ToString
+class Values {
+    String v1
+    String v2
+    String v3
+    String v4
+    String v5
+    String v6
+    String v7
+    String v8
+}
+
+// =================== FUNCIÓN ===================
+Values getRandomValues(int rowNumberOld) {
+    int rowNumber = rowNumberOld+1001000
+    String fecha = &quot;20250423&quot;
+
+    int masterId = 111 + (rowNumber - 1)
+    String nameMaster = masterId + &quot;-&quot; + fecha
+
+    int houseId = 20001 + (rowNumber - 1)
+    String nameHouse = houseId + &quot;H&quot; + fecha
+
+    int manifiestoId = 30001 + (rowNumber - 1)
+    String nameManifiesto = manifiestoId + fecha + &quot;ABC&quot;
+
+    int parentMasterId = (masterId == 111) ? 111 : masterId - 1
+    String nameHouseMaster = parentMasterId + &quot;-&quot; + fecha
+    String nameManifiestoMaster = nameHouseMaster
+
+    Values values = new Values()
+    values.v1 = String.valueOf(masterId)
+    values.v2 = nameMaster
+    values.v3 = String.valueOf(houseId)
+    values.v4 = nameHouse
+    values.v5 = nameHouseMaster
+    values.v6 = String.valueOf(manifiestoId)
+    values.v7 = nameManifiesto
+    values.v8 = nameManifiestoMaster
+
+    return values
+}
+
+String ok2(String template, valores) {
+	def xml = &quot;/opt/jmeter/files/&quot; + template
+	def content = new java.io.File(xml).getText(&quot;UTF-8&quot;)
+	content = content
+	            .replace(&quot;%ID_MASTER%&quot;, valores.v1)
+	            .replace(&quot;%NAME_MASTER%&quot;, valores.v2)
+	            .replace(&quot;%ID_HOUSE%&quot;, valores.v3)
+	            .replace(&quot;%NAME_HOUSE%&quot;, valores.v4)
+	            .replace(&quot;%NAME_HOUSE_MASTER%&quot;, valores.v5)
+	            .replace(&quot;%ID_MANIFIESTO%&quot;, valores.v6)
+	            .replace(&quot;%NAME_MANIFIESTO%&quot;, valores.v7)
+	            .replace(&quot;%NAME_MANIFIESTO_MASTER%&quot;, valores.v8)
+	return content.bytes.encodeBase64().toString()	
+}
+
+// =================== USO ===================
+int threadIndex = ctx.getThreadNum() + 1 // Para que empiece en 1
+Values valores = getRandomValues(threadIndex)
+
+String base64a = ok2(&quot;house.xml&quot;, valores)
+vars.put(&quot;base64EncodedXMLa&quot;, base64a)
+
+def base64b = ok2(&quot;master.xml&quot;, valores)
+vars.put(&quot;base64EncodedXMLb&quot;, base64b)            
+
+def base64c = ok2(&quot;manifiesto.xml&quot;, valores)
+vars.put(&quot;base64EncodedXMLc&quot;, base64c)            
+
+</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">false</stringProp>
+        </JSR223Sampler>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Headers">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">AAL0409235E6</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Pass-ID</stringProp>
+                <stringProp name="Header.value">/9CbYYqBGzw/I3xDuoFkNBk9ZFDEzDpOfWHb4YkzO59B/RW4Vo74PkS1cn1IFBBi</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-url-ID</stringProp>
+                <stringProp name="Header.value">http://172.57.1.48:20130/ventanilla-aereos-HA/AereosRespuesta?WSDL</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Pais-ID</stringProp>
+                <stringProp name="Header.value">MX</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST to IATA">
+          <stringProp name="HTTPSampler.domain">aereos.v30.ultrasist.net</stringProp>
+          <stringProp name="HTTPSampler.port">443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/api/recepcion/mensaje/iata</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;mensaje&quot;: [&quot;${base64EncodedXMLa}&quot;]&#xd;
+}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-User-ID</stringProp>
+                <stringProp name="Header.value">AAL0409235E6</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Pass-ID</stringProp>
+                <stringProp name="Header.value">/9CbYYqBGzw/I3xDuoFkNBk9ZFDEzDpOfWHb4YkzO59B/RW4Vo74PkS1cn1IFBBi</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-url-ID</stringProp>
+                <stringProp name="Header.value">http://172.57.1.48:20130/ventanilla-aereos-HA/AereosRespuesta?WSDL</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Pais-ID</stringProp>
+                <stringProp name="Header.value">MX</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
